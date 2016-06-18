@@ -63,10 +63,10 @@ public class AddAlarmMaskIdActivity extends BaseActivity implements
     @Override
     public void onClick(View view) {
         // TODO Auto-generated method stub
-        int id = view.getId();
-        if (id == R.id.back_btn) {
+        int resId = view.getId();
+        if (resId == R.id.back_btn) {
             finish();
-        } else if (id == R.id.save) {
+        } else if (resId == R.id.save) {
             String alarmId = mAlarmId.getText().toString();
             if ("".equals(alarmId.trim())) {
                 T.showShort(mContext, R.string.input_alarm_mask_id);

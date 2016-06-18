@@ -394,8 +394,8 @@ public class CutImageActivity extends BaseActivity implements OnClickListener {
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-        int id = v.getId();
-        if (id == R.id.save) {
+        int resId = v.getId();
+        if (resId == R.id.save) {
             this.setResult(1);
             ImageUtils.saveImg(saveBitmap, Constants.Image.USER_HEADER_PATH
                             + NpcCommon.mThreeNum + "/" + mContact.contactId + "/",
@@ -405,7 +405,7 @@ public class CutImageActivity extends BaseActivity implements OnClickListener {
                             + NpcCommon.mThreeNum + "/" + mContact.contactId + "/",
                     Constants.Image.USER_GRAY_HEADER_FILE_NAME);
             finish();
-        } else if (id == R.id.back_btn) {
+        } else if (resId == R.id.back_btn) {
             finish();
         }
     }

@@ -137,10 +137,10 @@ public class AlarmRecordActivity extends BaseActivity implements
     public void onClick(View view) {
         // TODO Auto-generated method stub
 
-        int id = view.getId();
-        if (id == R.id.back_btn) {
+        int resId = view.getId();
+        if (resId == R.id.back_btn) {
             this.finish();
-        } else if (id == R.id.clear) {
+        } else if (resId == R.id.clear) {
             NormalDialog dialog = new NormalDialog(context, context
                     .getResources().getString(R.string.delete_alarm_records),
                     context.getResources().getString(R.string.confirm_clear),

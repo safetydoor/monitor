@@ -156,17 +156,17 @@ public class SettingFrag extends BaseFragment implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.logout_layout) {
+        int resId = v.getId();
+        if (resId == R.id.logout_layout) {
             Intent canel = new Intent();
             canel.setAction(Constants.Action.ACTION_SWITCH_USER);
             mContext.sendBroadcast(canel);
-        } else if (id == R.id.exit_layout) {
+        } else if (resId == R.id.exit_layout) {
             Intent exit = new Intent();
             exit.setAction(Constants.Action.ACTION_EXIT);
             exit.putExtra("isLogin", isLogin);
             mContext.sendBroadcast(exit);
-        } else if (id == R.id.center_t) {
+        } else if (resId == R.id.center_t) {
             if (null != dialog && dialog.isShowing()) {
                 Log.e("my", "isShowing");
                 return;
@@ -187,27 +187,27 @@ public class SettingFrag extends BaseFragment implements OnClickListener {
             dialog.setCanceledOnTouchOutside(false);
             isCancelCheck = false;
             new UpdateCheckVersionThread(handler).start();
-        } else if (id == R.id.center_about) {
+        } else if (resId == R.id.center_about) {
             // Intent i = new Intent(mContext,AboutActivity.class);
             // mContext.startActivity(i);
 
             NormalDialog about = new NormalDialog(mContext);
             about.showAboutDialog();
-        } else if (id == R.id.account_set) {
+        } else if (resId == R.id.account_set) {
             Intent goAccount_set = new Intent();
             goAccount_set.setClass(mContext, AccountInfoActivity.class);
             startActivity(goAccount_set);
-        } else if (id == R.id.system_set) {
+        } else if (resId == R.id.system_set) {
             Intent goSys_set = new Intent();
             goSys_set.setClass(mContext, SettingSystemActivity.class);
             startActivity(goSys_set);
-        } else if (id == R.id.system_message) {
+        } else if (resId == R.id.system_message) {
             Intent goSysMsg = new Intent(mContext, SysMsgActivity.class);
             startActivity(goSysMsg);
-        } else if (id == R.id.qr_code_layout) {
+        } else if (resId == R.id.qr_code_layout) {
             Intent go_qr = new Intent(mContext, QRcodeActivity.class);
             mContext.startActivity(go_qr);
-        } else if (id == R.id.alarm_set_btn) {
+        } else if (resId == R.id.alarm_set_btn) {
             Intent go_alarm_set = new Intent(mContext, AlarmSetActivity.class);
             startActivity(go_alarm_set);
         }

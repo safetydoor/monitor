@@ -126,10 +126,10 @@ public class CreateQRcodeActivity extends BaseActivity implements
 
     @Override
     public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.img_back) {
+        int resId = v.getId();
+        if (resId == R.id.img_back) {
             finish();
-        } else if (id == R.id.bt_hear) {
+        } else if (resId == R.id.bt_hear) {
             Intent itent = new Intent();
             itent.setClass(mContext, AddWaitActicity.class);
             itent.putExtra("ssidname", "");
@@ -139,7 +139,7 @@ public class CreateQRcodeActivity extends BaseActivity implements
             itent.putExtra("isNeedSendWifi", false);
             startActivity(itent);
             finish();
-        } else if (id == R.id.bt_help) {
+        } else if (resId == R.id.bt_help) {
             NormalDialog helpdialog = new NormalDialog(mContext);
             helpdialog.showQRcodehelp();
         }

@@ -543,8 +543,8 @@ public class AlarmActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-        int id = v.getId();
-        if (id == R.id.ignore_btn) {
+        int resId = v.getId();
+        if (resId == R.id.ignore_btn) {
             viewed = true;
             SharedPreferencesManager.getInstance().putAlarmTimeInterval(mContext, 10);
             int timeInterval = SharedPreferencesManager.getInstance()
@@ -559,7 +559,7 @@ public class AlarmActivity extends Activity implements OnClickListener {
                             + mContext.getResources().getString(
                             R.string.ignore_alarm_prompt_end));
             finish();
-        } else if (id == R.id.monitor_btn) {
+        } else if (resId == R.id.monitor_btn) {
             viewed = true;
             final Contact contact = FList.getInstance().isContact(
                     String.valueOf(alarm_id));
@@ -620,7 +620,7 @@ public class AlarmActivity extends Activity implements OnClickListener {
                 });
                 alarm_input.startAnimation(anim);
             }
-        } else if (id == R.id.alarm_go) {
+        } else if (resId == R.id.alarm_go) {
             viewed = true;
             final String password = mPassword.getText().toString();
             if (password.trim().equals("")) {
@@ -651,7 +651,7 @@ public class AlarmActivity extends Activity implements OnClickListener {
                     }
                 }
             }.start();
-        } else if (id == R.id.shield_btn) {
+        } else if (resId == R.id.shield_btn) {
             viewed = true;
             if (!isSupportDelete) {
                 ShieldDevice();

@@ -1007,13 +1007,13 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-        int id = v.getId();
-        if (id == R.id.iv_full_screen) {
+        int resId = v.getId();
+        if (resId == R.id.iv_full_screen) {
             ScrrenOrientation = Configuration.ORIENTATION_LANDSCAPE;
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else if (id == R.id.defence_state || id == R.id.iv_defence) {
+        } else if (resId == R.id.defence_state || resId == R.id.iv_defence) {
             setDefence();
-        } else if (id == R.id.close_voice || id == R.id.close_voice) {
+        } else if (resId == R.id.close_voice || resId == R.id.close_voice) {
             if (mIsCloseVoice) {
                 mIsCloseVoice = false;
                 iv_voice.setImageResource(R.drawable.selector_half_screen_voice_open);
@@ -1034,13 +1034,13 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
                             0);
                 }
             }
-        } else if (id == R.id.screenshot || id == R.id.iv_screenshot) {
+        } else if (resId == R.id.screenshot || resId == R.id.iv_screenshot) {
             this.captureScreen(-1);
-        } else if (id == R.id.hungup || id == R.id.back_btn) {
+        } else if (resId == R.id.hungup || resId == R.id.back_btn) {
             reject();
-        } else if (id == R.id.choose_video_format) {
+        } else if (resId == R.id.choose_video_format) {
             changevideoformat();
-        } else if (id == R.id.iv_half_screen) {
+        } else if (resId == R.id.iv_half_screen) {
             control_bottom.setVisibility(View.INVISIBLE);
             ScrrenOrientation = Configuration.ORIENTATION_PORTRAIT;
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -1050,7 +1050,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 //                  pView.halfScreen();
 //                  Log.e("half", "half screen++");
 //             }
-        } else if (id == R.id.video_mode_hd) {
+        } else if (resId == R.id.video_mode_hd) {
             if (current_video_mode != P2PValue.VideoMode.VIDEO_MODE_HD) {
                 current_video_mode = P2PValue.VideoMode.VIDEO_MODE_HD;
                 P2PHandler.getInstance().setVideoMode(
@@ -1058,7 +1058,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
                 updateVideoModeText(current_video_mode);
             }
             hideVideoFormat();
-        } else if (id == R.id.video_mode_sd) {
+        } else if (resId == R.id.video_mode_sd) {
             if (current_video_mode != P2PValue.VideoMode.VIDEO_MODE_SD) {
                 current_video_mode = P2PValue.VideoMode.VIDEO_MODE_SD;
                 P2PHandler.getInstance().setVideoMode(
@@ -1066,7 +1066,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
                 updateVideoModeText(current_video_mode);
             }
             hideVideoFormat();
-        } else if (id == R.id.video_mode_ld) {
+        } else if (resId == R.id.video_mode_ld) {
             if (current_video_mode != P2PValue.VideoMode.VIDEO_MODE_LD) {
                 current_video_mode = P2PValue.VideoMode.VIDEO_MODE_LD;
                 P2PHandler.getInstance().setVideoMode(
@@ -1074,16 +1074,16 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
                 updateVideoModeText(current_video_mode);
             }
             hideVideoFormat();
-        } else if (id == R.id.rl_prgError || id == R.id.btn_refrash) {
+        } else if (resId == R.id.rl_prgError || resId == R.id.btn_refrash) {
             if (btnRefrash.getVisibility() == View.VISIBLE) {
                 hideError();
                 callDevice();
             }
-        } else if (id == R.id.iv_next) {
+        } else if (resId == R.id.iv_next) {
             switchNext();
-        } else if (id == R.id.iv_last) {
+        } else if (resId == R.id.iv_last) {
             switchLast();
-        } else if (id == R.id.tv_choosee_device) {
+        } else if (resId == R.id.tv_choosee_device) {
             if (isShowDeviceList) {
                 l_device_list.setVisibility(View.GONE);
                 isShowDeviceList = false;
@@ -1091,9 +1091,9 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
                 l_device_list.setVisibility(View.VISIBLE);
                 isShowDeviceList = true;
             }
-        } else if (id == R.id.open_door) {
+        } else if (resId == R.id.open_door) {
             openDor();
-        } else if (id == R.id.iv_speak || id == R.id.send_voice) {
+        } else if (resId == R.id.iv_speak || resId == R.id.send_voice) {
             if (!isSpeak) {
                 speak();
             } else {

@@ -149,21 +149,21 @@ public class AlarmSetActivity extends BaseActivity implements OnClickListener {
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-        int id = v.getId();
-        if (id == R.id.back_btn) {
+        int resId = v.getId();
+        if (resId == R.id.back_btn) {
             finish();
-        } else if (id == R.id.setting_time) {
+        } else if (resId == R.id.setting_time) {
             SharedPreferencesManager.getInstance().putAlarmTimeInterval(
                     mContext, date_seconds.getCurrentItem() + 1);
             Log.e("my", date_seconds.getCurrentItem() + "");
             time_text
                     .setText(String.valueOf((date_seconds.getCurrentItem() + 1)));
             T.showShort(mContext, R.string.modify_success);
-        } else if (id == R.id.add_alarm_item) {
+        } else if (resId == R.id.add_alarm_item) {
             Intent modify_alarmMaskId = new Intent(mContext,
                     AddAlarmMaskIdActivity.class);
             mContext.startActivity(modify_alarmMaskId);
-        } else if (id == R.id.alarm_record) {
+        } else if (resId == R.id.alarm_record) {
             Intent go_alarm_record = new Intent(mContext,
                     AlarmRecordActivity.class);
             mContext.startActivity(go_alarm_record);

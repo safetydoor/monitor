@@ -331,8 +331,8 @@ public class AlarmWithPictrueActivity extends BaseActivity implements OnClickLis
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-        int id = v.getId();
-        if (id == R.id.iv_close) {
+        int resId = v.getId();
+        if (resId == R.id.iv_close) {
             viewed = true;
             SharedPreferencesManager.getInstance().putAlarmTimeInterval(mContext, 10);
             int timeInterval = SharedPreferencesManager.getInstance()
@@ -347,7 +347,7 @@ public class AlarmWithPictrueActivity extends BaseActivity implements OnClickLis
                             + mContext.getResources().getString(
                             R.string.ignore_alarm_prompt_end));
             finish();
-        } else if (id == R.id.iv_alarm_check) {
+        } else if (resId == R.id.iv_alarm_check) {
             viewed = true;
             Contact contact = FList.getInstance().isContact(callId);
             if (contact != null) {
@@ -367,7 +367,7 @@ public class AlarmWithPictrueActivity extends BaseActivity implements OnClickLis
             } else {
                 createPassDialog(String.valueOf(alarm_id));
             }
-        } else if (id == R.id.iv_alarm_unbund) {
+        } else if (resId == R.id.iv_alarm_unbund) {
             viewed = true;
             DeleteDevice();
         }

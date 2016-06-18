@@ -83,14 +83,14 @@ public class AccountInfoActivity extends BaseActivity implements
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-        int id = v.getId();
-        if (id == R.id.back_btn) {
+        int resId = v.getId();
+        if (resId == R.id.back_btn) {
             finish();
-        } else if (id == R.id.change_email) {
+        } else if (resId == R.id.change_email) {
             Intent modify_email = new Intent(mContext,
                     ModifyAccountEmailActivity.class);
             startActivity(modify_email);
-        } else if (id == R.id.change_phone) {
+        } else if (resId == R.id.change_phone) {
             Account account = AccountPersist.getInstance()
                     .getActiveAccountInfo(mContext);
             if (!(account.phone.equals("0") || account.phone.equals(""))) {
@@ -102,7 +102,7 @@ public class AccountInfoActivity extends BaseActivity implements
                         ModifyAccountPhoneActivity.class);
                 startActivity(modify_phone);
             }
-        } else if (id == R.id.modify_login_pwd) {
+        } else if (resId == R.id.modify_login_pwd) {
             Intent modify_password = new Intent(mContext,
                     ModifyLoginPasswordActivity.class);
             startActivity(modify_password);

@@ -289,8 +289,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         // TODO Auto-generated method stub
 
-        int id = v.getId();
-        if (id == R.id.forget_pwd) {
+        int resId = v.getId();
+        if (resId == R.id.forget_pwd) {
             if (WifiUtils.getInstance().isConnectAP()) {
                 T.showLong(mContext, R.string.check_wifi);
             } else {
@@ -298,29 +298,29 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 Intent open_web = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(open_web);
             }
-        } else if (id == R.id.country_layout) {
+        } else if (resId == R.id.country_layout) {
             Intent i = new Intent(mContext, SearchListActivity.class);
             startActivity(i);
-        } else if (id == R.id.type_phone) {
+        } else if (resId == R.id.type_phone) {
             type_phone.setChecked(true);
             type_email.setChecked(false);
             choose_country.setVisibility(RelativeLayout.VISIBLE);
             current_type = Constants.LoginType.PHONE;
             initRememberPass();
-        } else if (id == R.id.type_email) {
+        } else if (resId == R.id.type_email) {
 
             type_phone.setChecked(false);
             type_email.setChecked(true);
             choose_country.setVisibility(RelativeLayout.GONE);
             current_type = Constants.LoginType.EMAIL;
             initRememberPass();
-        } else if (id == R.id.login) {
+        } else if (resId == R.id.login) {
             if (WifiUtils.getInstance().isConnectAP()) {
                 T.showLong(mContext, R.string.check_wifi);
             } else {
                 login();
             }
-        } else if (id == R.id.register) {
+        } else if (resId == R.id.register) {
             if (WifiUtils.getInstance().isConnectAP()) {
                 T.showLong(mContext, R.string.check_wifi);
             } else {
@@ -328,7 +328,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                         AltogetherRegisterActivity.class);
                 startActivity(register);
             }
-        } else if (id == R.id.remember_pass) {
+        } else if (resId == R.id.remember_pass) {
             boolean isChecked = false;
             if (current_type == Constants.LoginType.PHONE) {
                 isChecked = SharedPreferencesManager.getInstance()
@@ -432,7 +432,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 remember_pwd_img.setImageResource(R.drawable.ic_remember_pwd);
 
             }
-        } else if (id == R.id.tv_Anonymous_login) {
+        } else if (resId == R.id.tv_Anonymous_login) {
             Account account = AccountPersist.getInstance()
                     .getActiveAccountInfo(mContext);
             if (null == account) {

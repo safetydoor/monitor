@@ -54,11 +54,11 @@ public class MyInputPassDialog extends Dialog implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.button1_text) {
+        int resId = v.getId();
+        if (resId == R.id.button1_text) {
             final String password = etPass.getText().toString();
             listener.check(password, contactID);
-        } else if (id == R.id.button2_text) {
+        } else if (resId == R.id.button2_text) {
             this.dismiss();
         }
     }

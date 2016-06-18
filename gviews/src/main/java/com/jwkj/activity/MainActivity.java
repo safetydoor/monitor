@@ -502,8 +502,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     @Override
     public void onClick(View view) {
         // TODO Auto-generated method stub
-        var id = view.getId();
-        if (id == R.id.icon_contact) {
+        int resId = view.getId();
+        if (resId == R.id.icon_contact) {
             currFrag = 0;
             if (isConnectApWifi) {
                 if (null == apcontactFrag) {
@@ -518,7 +518,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 replaceFragment(R.id.fragContainer, contactFrag, fragTags[0]);
                 changeIconShow();
             }
-        } else if (id == R.id.icon_keyboard) {
+        } else if (resId == R.id.icon_keyboard) {
             ContactFrag.isHideAdd = true;
             currFrag = 1;
             if (null == keyboardFrag) {
@@ -526,7 +526,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             }
             replaceFragment(R.id.fragContainer, keyboardFrag, fragTags[1]);
             changeIconShow();
-        } else if (id == R.id.icon_setting) {
+        } else if (resId == R.id.icon_setting) {
             ContactFrag.isHideAdd = true;
             currFrag = 3;
             if (null == settingFrag) {
@@ -534,7 +534,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             }
             replaceFragment(R.id.fragContainer, settingFrag, fragTags[3]);
             changeIconShow();
-        } else if (id == R.id.icon_discover) {
+        } else if (resId == R.id.icon_discover) {
             ContactFrag.isHideAdd = true;
             currFrag = 4;
             if (null == utilsFrag) {

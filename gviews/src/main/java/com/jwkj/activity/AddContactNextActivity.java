@@ -255,10 +255,10 @@ public class AddContactNextActivity extends BaseActivity implements
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-        int id = v.getId();
-        if (id == R.id.back_btn) {
+        int resId = v.getId();
+        if (resId == R.id.back_btn) {
             this.finish();
-        } else if (id == R.id.save) {
+        } else if (resId == R.id.save) {
             save();
         }
     }

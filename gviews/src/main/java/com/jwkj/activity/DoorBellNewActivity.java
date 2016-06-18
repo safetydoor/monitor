@@ -289,8 +289,8 @@ public class DoorBellNewActivity extends Activity implements OnClickListener,
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
-        int id = v.getId();
-        if (id == R.id.ignore_btn) {
+        int resId = v.getId();
+        if (resId == R.id.ignore_btn) {
             int timeInterval = SharedPreferencesManager.getInstance()
                     .getAlarmTimeInterval(mContext);
             T.showShort(
@@ -303,7 +303,7 @@ public class DoorBellNewActivity extends Activity implements OnClickListener,
                             + mContext.getResources().getString(
                             R.string.ignore_alarm_prompt_end));
             finish();
-        } else if (id == R.id.monitor_btn) {
+        } else if (resId == R.id.monitor_btn) {
             alarm_go.setText("GO");
             mPassword.setHint(R.string.input_monitor_pwd);
             isOpendoor = false;
@@ -371,7 +371,7 @@ public class DoorBellNewActivity extends Activity implements OnClickListener,
                 });
                 alarm_input.startAnimation(anim);
             }
-        } else if (id == R.id.alarm_go) {
+        } else if (resId == R.id.alarm_go) {
             final String password = mPassword.getText().toString();
             if (password.trim().equals("")) {
                 T.showShort(mContext, R.string.input_monitor_pwd);
@@ -408,7 +408,7 @@ public class DoorBellNewActivity extends Activity implements OnClickListener,
                 P2PHandler.getInstance().setGPIO1_0(contactId, password);
                 finish();
             }
-        } else if (id == R.id.shield_btn) {
+        } else if (resId == R.id.shield_btn) {
             Contact mcontact = FList.getInstance().isContact(
                     String.valueOf(contactId));
             String open_door_order = "IPC1anerfa:unlock";

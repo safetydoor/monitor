@@ -203,14 +203,14 @@ public class APModeFrag extends BaseFragment implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.btn_ap_playback) {
+        int resId = v.getId();
+        if (resId == R.id.btn_ap_playback) {
             // 回放
             Intent playback = new Intent();
             playback.setClass(mContext, PlayBackListActivity.class);
             playback.putExtra("contact", APContacts);
             mContext.startActivity(playback);
-        } else if (id == R.id.btn_ap_setting) {
+        } else if (resId == R.id.btn_ap_setting) {
             // 设置
             Intent control = new Intent();
             control.setClass(mContext, MainControlActivity.class);
@@ -220,20 +220,20 @@ public class APModeFrag extends BaseFragment implements OnClickListener {
             control.putExtra("connectType", 1);
             control.putExtra("type", P2PValue.DeviceType.IPC);
             mContext.startActivity(control);
-        } else if (id == R.id.btn_ap_wifipwd) {
+        } else if (resId == R.id.btn_ap_wifipwd) {
             // 设密码
             Intent modifyPwd = new Intent(mContext, ModifyApWifiPwd.class);
             modifyPwd.putExtra("contactId", apContact.contactId);
             startActivity(modifyPwd);
-        } else if (id == R.id.btn_ap_existe) {
+        } else if (resId == R.id.btn_ap_existe) {
             // 退出AP模式
             Intent quite = new Intent();
             quite.setAction(Constants.Action.SEARCH_AP_QUITEAPDEVICE);
             mContext.sendBroadcast(quite);
-        } else if (id == R.id.ivbtn_ap_defence) {
+        } else if (resId == R.id.ivbtn_ap_defence) {
             // 布撤防
             setDefence();
-        } else if (id == R.id.user_icon) {
+        } else if (resId == R.id.user_icon) {
             Log.e("dxspppwwwddd", "密码--" + APContacts.contactPassword);
             Intent monitor = new Intent();
             monitor.setClass(mContext, CallActivity.class);
@@ -248,7 +248,7 @@ public class APModeFrag extends BaseFragment implements OnClickListener {
                     mark.substring(mark.lastIndexOf(".") + 1, mark.length()));
             monitor.putExtra("type", Constants.P2P_TYPE.P2P_TYPE_MONITOR);
             mContext.startActivity(monitor);
-        } else if (id == R.id.header_icon_play) {
+        } else if (resId == R.id.header_icon_play) {
             Log.e("dxspppwwwddd", "密码--" + APContacts.contactPassword);
             Intent monitor1 = new Intent();
             monitor1.setClass(mContext, CallActivity.class);
