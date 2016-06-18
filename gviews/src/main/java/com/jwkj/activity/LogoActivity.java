@@ -1,33 +1,26 @@
 package com.jwkj.activity;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
-
-import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.ScanResult;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.StrictMode;
 import android.util.Log;
 
-import com.yoosee.R;
 import com.jwkj.entity.Account;
 import com.jwkj.entity.LocalDevice;
 import com.jwkj.global.AccountPersist;
 import com.jwkj.global.AppConfig;
 import com.jwkj.global.Constants;
-import com.jwkj.global.FList;
 import com.jwkj.global.MyApp;
 import com.jwkj.global.NpcCommon;
 import com.jwkj.utils.TcpClient;
 import com.jwkj.utils.Utils;
 import com.jwkj.utils.WifiUtils;
 import com.p2p.core.P2PValue;
+import com.yoosee.R;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class LogoActivity extends BaseActivity {
 	Handler handler;
