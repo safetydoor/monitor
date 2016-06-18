@@ -91,8 +91,8 @@ public class QRcodeActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.next:
+		int resId = v.getId();
+		if (resId == R.id.next) {
 			InputMethodManager manager = (InputMethodManager) getSystemService(mContext.INPUT_METHOD_SERVICE);
 			if (manager != null) {
 				manager.hideSoftInputFromWindow(edit_pwd.getWindowToken(), 0);
@@ -115,12 +115,8 @@ public class QRcodeActivity extends BaseActivity implements OnClickListener {
 			qr_code.putExtra("ssidname", ssid);
 			qr_code.putExtra("wifiPwd", wifiPwd);
 			startActivity(qr_code);
-			break;
-		case R.id.img_back:
+		}else if (resId ==   R.id.img_back){
 			finish();
-			break;
-		default:
-			break;
 		}
 
 	}

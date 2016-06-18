@@ -188,8 +188,8 @@ public class RemoteControlFrag extends BaseFragment implements OnClickListener {
 	@Override
 	public void onClick(View view) {
 		// TODO Auto-generated method stub
-		switch (view.getId()) {
-		case R.id.change_defence:
+		int resId = view.getId();
+		if (resId == R.id.change_defence) {
 			progressBar_defence.setVisibility(RelativeLayout.VISIBLE);
 			defence_img.setVisibility(RelativeLayout.GONE);
 			if (last_defence == Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_ON) {
@@ -201,8 +201,7 @@ public class RemoteControlFrag extends BaseFragment implements OnClickListener {
 				P2PHandler.getInstance().setRemoteDefence(contact.contactId,
 						contact.contactPassword, last_modify_defence);
 			}
-			break;
-		case R.id.change_record:
+		}else if (resId == R.id.change_record){
 			progressBar_record.setVisibility(RelativeLayout.VISIBLE);
 			record_img.setVisibility(RelativeLayout.GONE);
 			if (last_record == Constants.P2P_SET.REMOTE_RECORD_SET.RECORD_SWITCH_ON) {
@@ -214,7 +213,6 @@ public class RemoteControlFrag extends BaseFragment implements OnClickListener {
 				P2PHandler.getInstance().setRemoteRecord(contact.contactId,
 						contact.contactPassword, last_modify_record);
 			}
-			break;
 		}
 	}
 

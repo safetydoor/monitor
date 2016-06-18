@@ -282,8 +282,8 @@ public class TimeControlFrag extends BaseFragment implements OnClickListener {
 	@Override
 	public void onClick(View view) {
 		// TODO Auto-generated method stub
-		switch (view.getId()) {
-		case R.id.setting_time:
+		int resId = view.getId();
+		if (resId == R.id.setting_time) {
 			progressBar.setVisibility(RelativeLayout.VISIBLE);
 			time_text.setVisibility(RelativeLayout.GONE);
 			setting_time.setEnabled(false);
@@ -303,13 +303,11 @@ public class TimeControlFrag extends BaseFragment implements OnClickListener {
 									contact.contactPassword, cur_modify_time);
 						}
 					}).start();
-			break;
-		case R.id.bt_set_timezone:
+		}else if (resId == R.id.bt_set_timezone){
 			current_urban = w_urban.getCurrentItem();
 			Log.e("current_urban", "current_urban="+current_urban+"half_zone_time[current_urban]="+half_zone_time[current_urban]);
 			P2PHandler.getInstance().setTimeZone(idOrIp,
 					contact.contactPassword,half_zone_time[current_urban]);
-			break;
 		}
 	}
 

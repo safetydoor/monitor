@@ -203,86 +203,74 @@ public class MainControlFrag extends BaseFragment implements OnClickListener {
 	@Override
 	public void onClick(View view) {
 		// TODO Auto-generated method stub
-		switch (view.getId()) {
-		case R.id.remote_control:
+		int resId = view.getId();
+		if (resId == R.id.remote_control) {
 			Intent go_remote_control = new Intent();
 			go_remote_control
 					.setAction(Constants.Action.REPLACE_REMOTE_CONTROL);
 			go_remote_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_remote_control);
-			break;
-		case R.id.time_control:
+		}else if (resId == R.id.time_control){
 			Intent go_time_control = new Intent();
 			go_time_control.setAction(Constants.Action.REPLACE_SETTING_TIME);
 			go_time_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_time_control);
-			break;
-		case R.id.alarm_control:
+		}else if (resId == R.id.alarm_control){
 			Intent go_alarm_control = new Intent();
 			go_alarm_control.setAction(Constants.Action.REPLACE_ALARM_CONTROL);
 			go_alarm_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_alarm_control);
-			break;
-		case R.id.record_control:
+		}else if (resId == R.id.record_control){
 			Intent go_record_control = new Intent();
 			go_record_control
 					.setAction(Constants.Action.REPLACE_RECORD_CONTROL);
 			go_record_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_record_control);
-			break;
-		case R.id.video_control:
+		}else if (resId == R.id.video_control){
 			Intent go_video_control = new Intent();
 			go_video_control.setAction(Constants.Action.REPLACE_VIDEO_CONTROL);
 			go_video_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_video_control);
-			break;
-		case R.id.security_control:
+		}else if (resId == R.id.security_control){
 			Intent go_security_control = new Intent();
 			go_security_control
 					.setAction(Constants.Action.REPLACE_SECURITY_CONTROL);
 			go_security_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_security_control);
-			break;
-		case R.id.net_control:
+		}else if (resId == R.id.net_control){
 			Intent go_net_control = new Intent();
 			go_net_control.setAction(Constants.Action.REPLACE_NET_CONTROL);
 			go_net_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_net_control);
-			break;
-		case R.id.defenceArea_control:
+		}else if (resId == R.id.defenceArea_control){
 			Intent go_da_control = new Intent();
 			go_da_control
 					.setAction(Constants.Action.REPLACE_DEFENCE_AREA_CONTROL);
 			go_da_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_da_control);
-			break;
-		case R.id.check_device_update:
+		}else if (resId == R.id.check_device_update){
 			Intent check_update = new Intent(mContext,
 					DeviceUpdateActivity.class);
 			check_update.putExtra("contact", mContact);
 			mContext.startActivity(check_update);
-			break;
-		case R.id.sd_card_control:
+		}else if (resId == R.id.sd_card_control){
 			Intent go_sd_card_control = new Intent();
 			go_sd_card_control
 					.setAction(Constants.Action.REPLACE_SD_CARD_CONTROL);
 			go_sd_card_control.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_sd_card_control);
-			break;
-		case R.id.language_control:
+		}else if (resId == R.id.language_control){
 			P2PHandler.getInstance().getDeviceLanguage(mContact.contactId,
 					mContact.contactPassword);
 			dialog = new NormalDialog(mContext);
 			dialog.setStyle(NormalDialog.DIALOG_STYLE_LOADING);
 			dialog.showDialog();
-			break;
-		case R.id.modify_wifipwd_control:
+		}else if (resId == R.id.modify_wifipwd_control){
 			Intent go_modify_wifipwd=new Intent();
 			go_modify_wifipwd.setAction(Constants.Action.REPLACE_MODIFY_WIFI_PWD_CONTROL);
 			go_modify_wifipwd.putExtra("isEnforce", true);
 			mContext.sendBroadcast(go_modify_wifipwd);
-			break;
-		case R.id.ap_statechange:
+		}else if (resId == R.id.ap_statechange){
 			int resuly=(Integer) view.getTag();
 			dialog=new NormalDialog(mContext);
 			if(resuly==1){//支持AP模式,不处于AP模式
@@ -304,7 +292,6 @@ public class MainControlFrag extends BaseFragment implements OnClickListener {
 				}
 			});
 			//查看返回结果，再跳转
-			break;
 		}
 	}
 

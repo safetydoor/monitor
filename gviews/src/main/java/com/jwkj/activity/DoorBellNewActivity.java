@@ -480,72 +480,67 @@ public class DoorBellNewActivity extends Activity implements OnClickListener,
     @Override
     public void onTrigger(View v, int target) {
         final int resId = mGlowPadView.getResourceIdForTarget(target);
-        switch (resId) {
-            case R.drawable.ic_item_ignore:
-                viewed = true;
-                int timeInterval = SharedPreferencesManager.getInstance()
-                        .getAlarmTimeInterval(mContext);
-                T.showShort(
-                        mContext,
-                        mContext.getResources().getString(
-                                R.string.ignore_alarm_prompt_start)
-                                + " "
-                                + timeInterval
-                                + " "
-                                + mContext.getResources().getString(
-                                R.string.ignore_alarm_prompt_end));
-                P2PHandler.getInstance().setReceiveDoorBell(contactId);
-                finish();
-                break;
-            case R.drawable.ic_item_go:
-                viewed = true;
-                final Contact contact = FList.getInstance().isContact(contactId);
-                if (null != contact) {
-                    hasContact = true;
-                    P2PConnect.vReject("");
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            while (true) {
-                                if (P2PConnect.getCurrent_state() == P2PConnect.P2P_STATE_NONE) {
-                                    Message msg = new Message();
-                                    String[] data = new String[]{
-                                            contact.contactId,
-                                            contact.contactPassword};
-                                    msg.obj = data;
-                                    handler.sendMessage(msg);
-                                    break;
-                                }
-                                Utils.sleepThread(500);
+        if (resId == R.drawable.ic_item_ignore) {
+            viewed = true;
+            int timeInterval = SharedPreferencesManager.getInstance()
+                    .getAlarmTimeInterval(mContext);
+            T.showShort(
+                    mContext,
+                    mContext.getResources().getString(
+                            R.string.ignore_alarm_prompt_start)
+                            + " "
+                            + timeInterval
+                            + " "
+                            + mContext.getResources().getString(
+                            R.string.ignore_alarm_prompt_end));
+            P2PHandler.getInstance().setReceiveDoorBell(contactId);
+            finish();
+        } else if (resId == R.id.ic_item_go) {
+            viewed = true;
+            final Contact contact = FList.getInstance().isContact(contactId);
+            if (null != contact) {
+                hasContact = true;
+                P2PConnect.vReject("");
+                new Thread() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            if (P2PConnect.getCurrent_state() == P2PConnect.P2P_STATE_NONE) {
+                                Message msg = new Message();
+                                String[] data = new String[]{
+                                        contact.contactId,
+                                        contact.contactPassword};
+                                msg.obj = data;
+                                handler.sendMessage(msg);
+                                break;
                             }
+                            Utils.sleepThread(500);
                         }
-                    }.start();
-                }
+                    }
+                }.start();
+            }
 
-                if (!hasContact) {
-                    // 弹一个对话框
-                    creatDialog();
-                }
-                break;
-            case 3:// 开门，不能直接起用
-                Contact mcontact = FList.getInstance().isContact(
-                        String.valueOf(contactId));
-                String open_door_order = "IPC1anerfa:unlock";
-                if (mcontact != null) {
-                    P2PHandler.getInstance().sendCustomCmd(mcontact.contactId,
-                            mcontact.contactPassword, open_door_order);
-                    P2PHandler.getInstance().setGPIO1_0(mcontact.contactId,
-                            mcontact.contactPassword);
-                    finish();
-                } else {
-                    isOpendoor = true;
-                    alarm_go.setText(R.string.unlock);
-                    mPassword.setHint(R.string.input_lock_password);
-                    alarm_input.setVisibility(LinearLayout.VISIBLE);
-                }
-                break;
-            default:
-                // Code should never reach here.
+            if (!hasContact) {
+                // 弹一个对话框
+                creatDialog();
+            }
+        } else if (resId == 3) {
+            // 开门，不能直接起用
+            Contact mcontact = FList.getInstance().isContact(
+                    String.valueOf(contactId));
+            String open_door_order = "IPC1anerfa:unlock";
+            if (mcontact != null) {
+                P2PHandler.getInstance().sendCustomCmd(mcontact.contactId,
+                        mcontact.contactPassword, open_door_order);
+                P2PHandler.getInstance().setGPIO1_0(mcontact.contactId,
+                        mcontact.contactPassword);
+                finish();
+            } else {
+                isOpendoor = true;
+                alarm_go.setText(R.string.unlock);
+                mPassword.setHint(R.string.input_lock_password);
+                alarm_input.setVisibility(LinearLayout.VISIBLE);
+            }
         }
     }
 
