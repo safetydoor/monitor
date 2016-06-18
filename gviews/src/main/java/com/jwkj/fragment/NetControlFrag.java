@@ -312,13 +312,11 @@ public class NetControlFrag extends BaseFragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.radio_one:
+		int resId = v.getId();
+		if (resId == R.id.radio_one) {
 			changeNetType(Constants.P2P_SET.NET_TYPE_SET.NET_TYPE_WIRED);
-			break;
-		case R.id.radio_two:
+		} else if (resId == R.id.radio_two) {
 			changeNetType(Constants.P2P_SET.NET_TYPE_SET.NET_TYPE_WIFI);
-			break;
 		}
 	}
 

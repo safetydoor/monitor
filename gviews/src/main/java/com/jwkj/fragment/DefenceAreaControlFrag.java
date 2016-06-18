@@ -998,9 +998,7 @@ public class DefenceAreaControlFrag extends BaseFragment implements
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		switch (v.getId()) {
 
-		}
 	}
 
 	public void study(final int group, final int item) {

@@ -495,7 +495,7 @@ public class DoorBellNewActivity extends Activity implements OnClickListener,
                             R.string.ignore_alarm_prompt_end));
             P2PHandler.getInstance().setReceiveDoorBell(contactId);
             finish();
-        } else if (resId == R.id.ic_item_go) {
+        } else if (resId == R.drawable.ic_item_go) {
             viewed = true;
             final Contact contact = FList.getInstance().isContact(contactId);
             if (null != contact) {

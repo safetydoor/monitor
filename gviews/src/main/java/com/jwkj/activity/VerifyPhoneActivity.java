@@ -60,7 +60,7 @@ public class VerifyPhoneActivity extends BaseActivity implements
     @Override
     public void onClick(View view) {
         // TODO Auto-generated method stub
-        int resId = v.getId();
+        int resId = view.getId();
         if (resId == R.id.resend) {
             resendCode();
         } else if (resId == R.id.next) {

@@ -290,24 +290,22 @@ public class VideoControlFrag extends BaseFragment implements OnClickListener {
 	@Override
 	public void onClick(View view) {
 		// TODO Auto-generated method stub
-		switch (view.getId()) {
-		case R.id.radio_one:
+		int resId = view.getId();
+		if (resId == R.id.radio_one) {
 			progressBar_video_format.setVisibility(RelativeLayout.VISIBLE);
 			radio_one.setEnabled(false);
 			radio_two.setEnabled(false);
 
 			cur_modify_video_format = Constants.P2P_SET.VIDEO_FORMAT_SET.VIDEO_FORMAT_PAL;
 			switchVideoFormat(Constants.P2P_SET.VIDEO_FORMAT_SET.VIDEO_FORMAT_PAL);
-			break;
-		case R.id.radio_two:
+		}else if (resId == R.id.radio_two){
 			progressBar_video_format.setVisibility(RelativeLayout.VISIBLE);
 			radio_one.setEnabled(false);
 			radio_two.setEnabled(false);
 
 			cur_modify_video_format = Constants.P2P_SET.VIDEO_FORMAT_SET.VIDEO_FORMAT_NTSC;
 			switchVideoFormat(Constants.P2P_SET.VIDEO_FORMAT_SET.VIDEO_FORMAT_NTSC);
-			break;
-		case R.id.change_image_reverse:
+		}else if (resId == R.id.change_image_reverse){
 			showProgress_image_reverse();
 			if (isOpenReverse == true) {
 				P2PHandler.getInstance().setImageReverse(idOrIp,
@@ -316,7 +314,6 @@ public class VideoControlFrag extends BaseFragment implements OnClickListener {
 				P2PHandler.getInstance().setImageReverse(idOrIp,
 						contact.contactPassword, 0);
 			}
-			break;
 		}
 	}
 

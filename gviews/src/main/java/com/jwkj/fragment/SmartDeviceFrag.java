@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 
-
 import com.jwkj.adapter.SensorRecycleAdapter;
 import com.jwkj.adapter.SensorRecycleAdapter.ViewHolder;
 import com.jwkj.data.Contact;
@@ -42,7 +41,7 @@ import java.util.List;
 /**
  * Created by dxs on 2016/1/12.
  */
-public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
+public class SmartDeviceFrag extends BaseFragment implements OnClickListener {
     private Context mContext;
     private static final int PopH = 142;
     private int device_type = 0;
@@ -57,7 +56,7 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
     private String nameTemp = "";//用户输入的名字缓存
     private SensorRecycleAdapter.ViewHolder holder;
     private Sensor sensorSwitch;
- 
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,7 +79,7 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
     private void initUI(View view) {
         mListView = (ListView) view.findViewById(R.id.rlv_sensor);
         ivAddSensor = (ImageView) view.findViewById(R.id.iv_add_sensor);
-        mAdapter = new SensorRecycleAdapter(mContext, sensors,contact);
+        mAdapter = new SensorRecycleAdapter(mContext, sensors, contact);
         mListView.setAdapter(mAdapter);
         mAdapter.setOnSensorRecycleAdatperClickListner(listner);
         ivAddSensor.setOnClickListener(this);
@@ -148,34 +147,34 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
                 //获取所有的特殊传感器
                 if (boption == Constants.FishBoption.MESG_GET_OK) {
                     paserSpecialSensorData(data, data[3]);
-                 
+
                 }
                 getAllSensorData();
-            }else if(intent.getAction().equals(Constants.P2P.RET_GET_LAMPSTATE)){
-            	Log.e("dxsTeat","LAMPSTATE---");
+            } else if (intent.getAction().equals(Constants.P2P.RET_GET_LAMPSTATE)) {
+                Log.e("dxsTeat", "LAMPSTATE---");
                 if (boption == Constants.FishBoption.MESG_GET_OK) {
-                    Sensor sensor=getSensorByData(data,4);
-                    if(sensor!=null){
+                    Sensor sensor = getSensorByData(data, 4);
+                    if (sensor != null) {
                         sensor.setLampState(data[3]);
-                        Sensor sensorsssss=sensors.get(sensors.indexOf(sensor)) ;
-                        Log.e("dxsTeat", "sensorsssss-->"+sensorsssss.getLampState());
+                        Sensor sensorsssss = sensors.get(sensors.indexOf(sensor));
+                        Log.e("dxsTeat", "sensorsssss-->" + sensorsssss.getLampState());
                         mAdapter.notifySensorData(sensors);
-                    }else{
-                        Log.e("dxsTest","sensor为空");
+                    } else {
+                        Log.e("dxsTest", "sensor为空");
                     }
                 }
-            }else if (intent.getAction().equals(Constants.P2P.RET_TURN_SENSOR)) {
+            } else if (intent.getAction().equals(Constants.P2P.RET_TURN_SENSOR)) {
                 //设置开关
                 if (boption == Constants.FishBoption.MESG_SET_OK) {
                     setSensorSwitch(sensorSwitch);
                 } else if (boption == Constants.FishBoption.MESG_SENSOR_NOT_LEARN_YET) {
                     //无此传感器
                 }
-            }else if(intent.getAction().equals(Constants.P2P.RET_SET_SENSER_WORKMODE)){
-            	if(boption == Constants.FishBoption.MESG_SET_OK){
+            } else if (intent.getAction().equals(Constants.P2P.RET_SET_SENSER_WORKMODE)) {
+                if (boption == Constants.FishBoption.MESG_SET_OK) {
 //            		  setSensorSwitch(sensorSwitch);
-            		  mAdapter.notifySensorData(sensors);
-            	}
+                    mAdapter.notifySensorData(sensors);
+                }
             }
         }
     };
@@ -202,30 +201,32 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
 
     /**
      * 获取所有插座状态
+     *
      * @param lamstate 1.查询  2.开  3.关闭
      */
-    private void getLampState(byte lamstate){
-        for (Sensor sensor:sensors){
-            if(sensor.getSensorType()== Constants.SensorType.TYPE_JACK){
-                getLampState(lamstate,sensor);
+    private void getLampState(byte lamstate) {
+        for (Sensor sensor : sensors) {
+            if (sensor.getSensorType() == Constants.SensorType.TYPE_JACK) {
+                getLampState(lamstate, sensor);
             }
         }
     }
 
     /**
      * 通过特征码获取列表的传感器
-     * @param data 原始数据
+     *
+     * @param data   原始数据
      * @param offset 数据偏移值
      * @return 不存在返回null
      */
-    private Sensor getSensorByData(byte[] data,int offset){
-        byte[] dataTemp=new byte[4];
-        byte[] sensorTemp=new byte[4];
-        System.arraycopy(data,offset,dataTemp,0,dataTemp.length);
-        for (Sensor sensor: sensors) {
-            byte[] sensorInfo=sensor.getSensorData();
-            System.arraycopy(sensorInfo,0,sensorTemp,0,sensorTemp.length);
-            if(Arrays.equals(sensorTemp,dataTemp)){
+    private Sensor getSensorByData(byte[] data, int offset) {
+        byte[] dataTemp = new byte[4];
+        byte[] sensorTemp = new byte[4];
+        System.arraycopy(data, offset, dataTemp, 0, dataTemp.length);
+        for (Sensor sensor : sensors) {
+            byte[] sensorInfo = sensor.getSensorData();
+            System.arraycopy(sensorInfo, 0, sensorTemp, 0, sensorTemp.length);
+            if (Arrays.equals(sensorTemp, dataTemp)) {
                 return sensor;
             }
         }
@@ -234,22 +235,24 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
 
     /**
      * 获取sensor在列表的位子
+     *
      * @param sensor
      * @return
      */
-    private int getSensorPosition(Sensor sensor){
+    private int getSensorPosition(Sensor sensor) {
         return sensors.indexOf(sensor);
     }
 
     /**
      * 获取或者设置插座状态
+     *
      * @param lamstate 0.查询  2.开  3.关闭
      * @param sensor
      */
-    private void getLampState(byte lamstate,Sensor sensor){
-            if(sensor.isControlSensor()){
-                FisheyeSetHandler.getInstance().sGetLampStatu(contact.contactId,contact.contactPassword,lamstate,sensor.getSensorData());
-            }
+    private void getLampState(byte lamstate, Sensor sensor) {
+        if (sensor.isControlSensor()) {
+            FisheyeSetHandler.getInstance().sGetLampStatu(contact.contactId, contact.contactPassword, lamstate, sensor.getSensorData());
+        }
     }
 
     private SensorRecycleAdapter.onSensorRecycleAdatperClickListner listner = new SensorRecycleAdapter.onSensorRecycleAdatperClickListner() {
@@ -258,9 +261,9 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
             //单击进入
             if (sensor.getSensorCategory() == Sensor.SENSORCATEGORY_NORMAL && sensor.getSensorType() == Constants.SensorType.TYPE_REMOTE_CONTROLLER) {
                 T.showShort(mContext, sensor.getName());
-            } else if(sensor.getSensorType() == Constants.SensorType.TYPE_JACK){
+            } else if (sensor.getSensorType() == Constants.SensorType.TYPE_JACK) {
                 T.showShort(mContext, sensor.getName());
-            }else{
+            } else {
 //                Intent modify = new Intent();
 ////              modify.setClass(mContext, ModifySensorActivity.class);
 //                modify.putExtra("sensor", sensor);
@@ -282,7 +285,7 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
                 pop.showAtLocation(getView(), Gravity.BOTTOM, 0, 0);
             } else {
                 //特殊传感器不可长按
-                T.showShort(mContext,sensor.getName());
+                T.showShort(mContext, sensor.getName());
             }
 
         }
@@ -290,28 +293,28 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
         @Override
         public void onSwitchClick(SensorRecycleAdapter.ViewHolder holder, Sensor sensor, int position) {
             //带开关的传感器的开关点击
-            if(sensor.isControlSensor()){
-                if(sensor.getLampState()==1||sensor.getLampState()==3){
-                    getLampState((byte) 3,sensor);
-                }else if(sensor.getLampState()==2||sensor.getLampState()==4){
-                    getLampState((byte) 2,sensor);
+            if (sensor.isControlSensor()) {
+                if (sensor.getLampState() == 1 || sensor.getLampState() == 3) {
+                    getLampState((byte) 3, sensor);
+                } else if (sensor.getLampState() == 2 || sensor.getLampState() == 4) {
+                    getLampState((byte) 2, sensor);
                 }
                 sensor.setLampState((byte) 0);
                 mAdapter.notifySensorData(sensors);
             }
         }
 
-		@Override
-		public void onSensorSwitchClick(ViewHolder holder, Sensor sensor,
-				int position) {
-			// TODO Auto-generated method stub
-			sensorSwitch=sensor;
-		}
+        @Override
+        public void onSensorSwitchClick(ViewHolder holder, Sensor sensor,
+                                        int position) {
+            // TODO Auto-generated method stub
+            sensorSwitch = sensor;
+        }
     };
 
     private EditorAndDeletePop.onDeleteAndEditorListner Poplistner = new EditorAndDeletePop.onDeleteAndEditorListner() {
         @Override
-        public void EditorClick(SensorRecycleAdapter.ViewHolder holder,Sensor sensor, int position) {
+        public void EditorClick(SensorRecycleAdapter.ViewHolder holder, Sensor sensor, int position) {
             //弹编辑框
             modifySensorPostion = position;
             showInputDialog(inputClickListner, R.string.modify_sensor_name, R.string.sensor_inputname_hint, sensor.getName(), R.string.yes, R.string.no);
@@ -319,8 +322,8 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
         }
 
         @Override
-        public void DeletClick(SensorRecycleAdapter.ViewHolder holde,Sensor sensor, int position) {
-            holder=holde;
+        public void DeletClick(SensorRecycleAdapter.ViewHolder holde, Sensor sensor, int position) {
+            holder = holde;
             showLoadingDialog(listener, 2);
             DeleteSensor(sensor);
             pop.dismiss();
@@ -360,12 +363,12 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
      * @param Sensorlen
      */
     private void paserSensorData(byte[] data, byte Controcons, byte controlen, byte Sensorcons, byte Sensorlen) {
-    	 byte[] contro = new byte[21];
-         for (int i = 0; i < Controcons; i++) {
-             System.arraycopy(data, 8 + i * contro.length, contro, 0, contro.length);
-             Sensor sensor = new Sensor(Sensor.SENSORCATEGORY_NORMAL, contro, contro[0]);
-             sensors.add(sensor);
-         }
+        byte[] contro = new byte[21];
+        for (int i = 0; i < Controcons; i++) {
+            System.arraycopy(data, 8 + i * contro.length, contro, 0, contro.length);
+            Sensor sensor = new Sensor(Sensor.SENSORCATEGORY_NORMAL, contro, contro[0]);
+            sensors.add(sensor);
+        }
         if (data[3] == 0) {//没有防护计划
             byte[] sens = new byte[24];
             for (int i = 0; i < Sensorcons; i++) {
@@ -388,12 +391,13 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
 
     /**
      * 解析特殊传感器数据
+     *
      * @param data
      * @param len
      */
     private void paserSpecialSensorData(byte[] data, byte len) {
         byte[] contro = new byte[4];
-        int k=len/contro.length;
+        int k = len / contro.length;
         for (int i = 0; i < k; i++) {
             System.arraycopy(data, 4 + i * contro.length, contro, 0, contro.length);
             Sensor sensor = new Sensor(Sensor.SENSORCATEGORY_SPECIAL, contro, contro[0]);
@@ -417,12 +421,10 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_add_sensor:
-            	Log.e("onclick", "onclick+++");
-                counts++;
-                addSensor();
-                break;
+        if (v.getId() == R.id.iv_add_sensor) {
+            Log.e("onclick", "onclick+++");
+            counts++;
+            addSensor();
         }
     }
 
@@ -467,7 +469,7 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
      */
     private void getSensorData(byte[] data, byte boption) {
         if (boption != Constants.FishBoption.MESG_SET_OK) {
-            if (dialog!=null&&dialog.isShowing()) {
+            if (dialog != null && dialog.isShowing()) {
                 dialog.dismiss();
             }
         }
@@ -595,9 +597,8 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
     }
 
 
-
-    public boolean onBackPressed(){
-        if(pop!=null&&pop.isShowing()){
+    public boolean onBackPressed() {
+        if (pop != null && pop.isShowing()) {
             pop.dismiss();
             Log.e("dxsTest", "true");
             return true;
@@ -605,10 +606,11 @@ public class SmartDeviceFrag extends BaseFragment implements OnClickListener{
         Log.e("dxsTest", "false");
         return false;
     }
+
     /**
      * 更新传感器总开关
      */
-    private void setSensorSwitch( Sensor sensor) {
+    private void setSensorSwitch(Sensor sensor) {
         if (sensor.getSensorSwitch()) {
             sensor.setSensorSwitch(false);
         } else {

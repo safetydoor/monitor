@@ -252,14 +252,12 @@ public class VideoActivity extends BaseVideoActivity implements OnClickListener 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.switch_camera:
+		int resId = v.getId();
+		if (resId == R.id.switch_camera) {
 			swtichCamera();
-			break;
-		case R.id.hungup:
+		} else if (resId == R.id.hungup) {
 			this.reject();
-			break;
-		case R.id.close_mike:
+		} else if (resId == R.id.close_mike) {
 			if (!mIsCloseMike) {
 				close_mike.setImageResource(R.drawable.btn_no_sound_s);
 				this.setMute(true);
@@ -269,8 +267,7 @@ public class VideoActivity extends BaseVideoActivity implements OnClickListener 
 				this.setMute(false);
 				mIsCloseMike = false;
 			}
-			break;
-		case R.id.local_surface_camera:
+		} else if (resId == R.id.local_surface_camera) {
 			if (cameraIsShow) {
 				if (this.closeLocalCamera()) {
 					Log.e("my", "close camera");
@@ -279,8 +276,7 @@ public class VideoActivity extends BaseVideoActivity implements OnClickListener 
 					local_surface_camera.setVisibility(RelativeLayout.GONE);
 				}
 			}
-			break;
-		case R.id.mask_camera:
+		} else if (resId == R.id.mask_camera) {
 			if (!cameraIsShow) {
 				if (this.openLocalCamera()) {
 					Log.e("my", "open camera");

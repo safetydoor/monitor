@@ -99,11 +99,10 @@ public class ModifyAlarmIdActivity extends BaseActivity implements
 	@Override
 	public void onClick(View view) {
 		// TODO Auto-generated method stub
-		switch (view.getId()) {
-		case R.id.back_btn:
+		int resId = view.getId();
+		if (resId == R.id.back_btn) {
 			finish();
-			break;
-		case R.id.save:
+		} else if (resId == R.id.save) {
 			alarmId = mAlarmId.getText().toString();
 			if ("".equals(alarmId.trim())) {
 				T.showShort(mContext, R.string.input_alarmId);
@@ -135,7 +134,6 @@ public class ModifyAlarmIdActivity extends BaseActivity implements
 
 			P2PHandler.getInstance().setBindAlarmId(mContact.contactId,
 					mContact.contactPassword, new_data.length, new_data);
-			break;
 		}
 	}
 

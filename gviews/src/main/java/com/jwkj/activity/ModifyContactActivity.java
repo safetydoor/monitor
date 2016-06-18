@@ -176,19 +176,17 @@ public class ModifyContactActivity extends BaseActivity implements
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.back_btn:
+		int resId = v.getId();
+		if (resId == R.id.back_btn) {
 			this.finish();
 //			P2PHandler.getInstance().getNvrIpcList(mModifyContact.contactId, mModifyContact.contactPassword);
-			break;
-		case R.id.save:
+		} else if (resId == R.id.save) {
 			if(mModifyContact.mode==P2PValue.DeviceMode.AP_MODE){
 				saveWifiName();
 			}else{
 				save();
 			}
-			break;
-		case R.id.modify_header:
+		} else if (resId == R.id.modify_header) {
 			// dialog = new NormalDialog(mContext);
 			// dialog.setTitle(R.string.operator);
 			// String[] data = new String[]{
@@ -228,9 +226,6 @@ public class ModifyContactActivity extends BaseActivity implements
 			//
 			// });
 			// dialog.showSelectorDialog();
-			break;
-		default:
-			break;
 		}
 	}
 

@@ -121,15 +121,13 @@ public class ModifyAccountEmailActivity extends BaseActivity implements
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.back_btn:
+		int resId = v.getId();
+		if (resId == R.id.back_btn) {
 			finish();
-			break;
-		case R.id.btn_clear_bundemail:
+		} else if (resId == R.id.btn_clear_bundemail) {
 			// 解除绑定邮箱
 			showInputPwd("");
-			break;
-		case R.id.next:
+		} else if (resId == R.id.next) {
 			// if(!isNext){
 			// return;
 			// }
@@ -148,8 +146,6 @@ public class ModifyAccountEmailActivity extends BaseActivity implements
 				return;
 			}
 			showInputPwd(email);
-			break;
-
 		}
 	}
 

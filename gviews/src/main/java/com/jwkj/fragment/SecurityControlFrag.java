@@ -182,14 +182,13 @@ public class SecurityControlFrag extends BaseFragment implements
 	@Override
 	public void onClick(View view) {
 		// TODO Auto-generated method stub
-		switch (view.getId()) {
-		case R.id.change_password:
+		int resId = view.getId();
+		if (resId == R.id.change_password) {
 			Intent modify_password = new Intent(mContext,
 					ModifyNpcPasswordActivity.class);
 			modify_password.putExtra("contact", contact);
 			mContext.startActivity(modify_password);
-			break;
-		case R.id.automatic_upgrade:
+		} else if (resId == R.id.automatic_upgrade) {
 			if (isOpenAutomaticUpgrade == true) {
 				P2PHandler.getInstance().setAutomaticUpgrade(idOrIp,
 						contact.contactPassword, 1);
@@ -197,8 +196,7 @@ public class SecurityControlFrag extends BaseFragment implements
 				P2PHandler.getInstance().setAutomaticUpgrade(idOrIp,
 						contact.contactPassword, 0);
 			}
-			break;
-		case R.id.change_super_password:
+		} else if (resId == R.id.change_super_password) {
 			Intent modify_visitor_password = new Intent(mContext,
 					ModifyNpcVisitorPasswordActivity.class);
 			modify_visitor_password.putExtra("visitorpwd", visitorpwd);
@@ -206,7 +204,6 @@ public class SecurityControlFrag extends BaseFragment implements
 					.putExtra("isSeeVisitorPwd", isSeeVisitorPwd);
 			modify_visitor_password.putExtra("contact", contact);
 			startActivityForResult(modify_visitor_password, 2);
-			break;
 		}
 	}
 

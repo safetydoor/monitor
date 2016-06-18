@@ -247,21 +247,16 @@ public class MyMessageDialog extends Dialog implements
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.ignore_btn:
+		int resId = v.getId();
+		if (resId == R.id.ignore_btn){
 			customDialogListener.dissmiss();
-			break;
-		case R.id.monitor_btn:
+		} else if (resId == R.id.monitor_btn){
 			customDialogListener.pingbi();
-			break;
-		case R.id.alarm_go:
+		} else if (resId == R.id.alarm_go){
 			customDialogListener.go();
-			break;
-		case R.id.shield_btn:
+		} else if (resId == R.id.shield_btn){
 			customDialogListener.check();
-			break;
 		}
-
 	}
 
 	public void dissmiss() {
