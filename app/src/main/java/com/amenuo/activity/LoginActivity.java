@@ -19,6 +19,10 @@ import android.widget.TextView;
 
 import com.amenuo.yoosee.R;
 import com.jwkj.activity.MainActivity;
+import com.jwkj.entity.Account;
+import com.jwkj.global.AccountPersist;
+import com.jwkj.global.MyApp;
+import com.jwkj.global.NpcCommon;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -197,6 +201,7 @@ public class LoginActivity extends AppCompatActivity{
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             if (success) {
+                saveLoginState();
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -212,6 +217,24 @@ public class LoginActivity extends AppCompatActivity{
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+        private  void saveLoginState(){
+            Account account = AccountPersist.getInstance()
+                    .getActiveAccountInfo(MyApp.app);
+            if (null == account) {
+                account = new Account();
+            }
+            account.three_number = "03122580";
+            account.phone = "18612233302";
+            account.email = "";
+            account.sessionId = "509882562";
+            account.rCode1 = "305707964";
+            account.rCode2 = "1414084427";
+            account.countryCode = "86";
+            AccountPersist.getInstance()
+                    .setActiveAccount(MyApp.app, account);
+            NpcCommon.mThreeNum = AccountPersist.getInstance()
+                    .getActiveAccountInfo(MyApp.app).three_number;
         }
     }
 }
